@@ -7,8 +7,6 @@ load_dotenv()
 
 DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "t", "yes")
 
-BASE_DOMAIN = os.getenv("BASE_DOMAIN")
-
 MAX_CALLS_PER_SESSION = int(os.getenv("MAX_CALLS_PER_SESSION", "5"))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,8 +21,9 @@ STORAGE_ROOT_URL = os.getenv("STORAGE_ROOT_URL")
 SECRET_KEY = os.getenv("SECRET_KEY", "fallback-unsafe-key-for-dev-only")
 
 ALLOWED_HOSTS = [
-    'fd-92746817181.europe-west1.run.app',
-    BASE_DOMAIN,
+    'yogacat-1058088277430.europe-west1.run.app',
+    'yogacat.co.uk',
+    'www.yogacat.co.uk',
     '127.0.0.1',
     'localhost',
     ]
