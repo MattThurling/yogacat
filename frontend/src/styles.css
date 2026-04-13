@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@font-face {
+    font-family: 'OptiSans';
+    src: url('https://storage.googleapis.com/le-assets/fonts/OptiSans/OPTISansSerif-Shaded.ttf.woff') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.bg-a1 { background-color: #79A8E6; }
+.bg-a2 { background-color: #4781E6; }
+.bg-b1 { background-color: #FFb736; }
+.bg-b2 { background-color: #FF9134; }
+.bg-c1 { background-color: #CC00CC; }
+.bg-c2 { background-color: #800080; }
+
+.big-icon {
+    width: 36px;
+    height: 36px;
+}
+
+.unspeakable-text {
+    font-family: 'Libre Baskerville';
+}
+
+.unspeakable-counter {
+  font-family: 'Rubik Mono One';
+}
+
+.opti {
+    font-family: 'OptiSans';
+    font-size: 48px;
+}
+
+.btn-red {
+  @apply btn btn-outline border-red-500 text-red-500 hover:bg-red-500 hover:text-white;
+}
+
+.btn-green {
+  @apply btn btn-outline border-green-500 text-green-500 hover:bg-green-500 hover:text-white;
+}
+
+  
+
+

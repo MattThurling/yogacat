@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex justify-center h-screen">
+  <div class="card w-96 bg-base-100 shadow-xl p-6">
+    <h2 class="text text-center mb-4">Login to your account</h2>
+
+    {% if form.errors %}
+      <div class="alert alert-error mb-4">
+        <ul>
+          {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+              <li class="text-red-500">{{ field|title }}: {{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    <form method="post" class="space-y-4">
+      {% csrf_token %}
+
+      <!-- Username Field -->
+      <div class="form-control">
+        <input type="text" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}"
+               class="input input-bordered w-full" placeholder="Enter your username">
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-control">  
+        <input type="password" name="{{ form.password.name }}" id="{{ form.password.id_for_label }}"
+               class="input input-bordered w-full" placeholder="Enter your password">
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary w-full">Login</button>
+    </form>
+
+    <p class="text-center text-sm mt-4">
+      <a href="" class="text-blue-500">Forgot password?</a>
+    </p>
+
+    <p class="text-center text-sm mt-2">
+      Don't have an account? <a href="{% url 'register' %}" class="text-blue-500">Register here</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+django>=4.0
+gunicorn
+psycopg2-binary
+python_dotenv
+dj_database_url
+django-tinymce
+whitenoise
+djangorestframework
+pytest
+pytest-django
+factory_boy>=3.3.0
+
+

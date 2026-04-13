@@ -1,0 +1,22 @@
+# Python-related
+**/__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+*.sqlite3
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Django static and media files
+staticfiles/
+media/
+
+# Render and deployment
+.DS_Store
+*.log
+.env
+.idea/
+.vscode/

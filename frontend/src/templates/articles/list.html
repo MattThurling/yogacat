@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block page_title %}YogaCat | Articles{% endblock %}
+
+{% block content %}
+{% include "partials/navigation.html" %}
+
+<main class="max-w-4xl mx-auto px-6 py-10">
+  <header class="mb-8">
+    <h1 class="text-4xl font-bold">Articles</h1>
+    <p class="mt-2 text-base-content/70">Latest published articles.</p>
+  </header>
+
+  {% if object_list %}
+    <div class="space-y-8">
+      {% for article in object_list %}
+        <article class="border border-base-200 rounded-2xl p-6 bg-base-100 shadow-sm">
+          <h2 class="text-2xl font-semibold">
+            <a class="link link-hover" href="{% url 'article-detail' slug=article.slug %}">
+              {{ article.title }}
+            </a>
+          </h2>
+          {% if article.meta_description %}
+            <p class="mt-3 text-base-content/70">{{ article.meta_description }}</p>
+          {% endif %}
+          <div class="mt-4 text-sm text-base-content/60 flex flex-wrap gap-3">
+            {% if article.published_at %}
+              <span>{{ article.published_at|date:"F j, Y" }}</span>
+            {% endif %}
+            {% if article.tags %}
+              <span>Tags: {{ article.tags }}</span>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="rounded-2xl border border-base-200 p-6 bg-base-100">
+      <p>No articles yet. Check back soon.</p>
+    </div>
+  {% endif %}
+
+  {% if is_paginated %}
+    <nav class="mt-10 flex items-center justify-between text-sm">
+      <div>
+        {% if page_obj.has_previous %}
+          <a class="link link-hover" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+      </div>
+      <div class="text-base-content/70">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+      </div>
+      <div>
+        {% if page_obj.has_next %}
+          <a class="link link-hover" href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+      </div>
+    </nav>
+  {% endif %}
+</main>
+
+{% endblock %}
