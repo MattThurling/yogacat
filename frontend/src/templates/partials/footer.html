@@ -1,0 +1,37 @@
+<footer class="mt-16 border-t border-base-300 bg-base-200/70 text-base-content">
+  <div class="mx-auto grid max-w-6xl gap-8 px-6 py-10 md:grid-cols-[1fr_auto]">
+    <div>
+      <p class="text-lg font-bold">{{ site_settings.site_name|default:"YogaCat" }}</p>
+      {% if site_settings.contact_email or site_settings.contact_phone or site_settings.contact_address %}
+        <address class="mt-4 space-y-1 text-sm not-italic text-base-content/70">
+          {% if site_settings.contact_email %}<p><a class="link link-hover" href="mailto:{{ site_settings.contact_email }}">{{ site_settings.contact_email }}</a></p>{% endif %}
+          {% if site_settings.contact_phone %}<p><a class="link link-hover" href="tel:{{ site_settings.contact_phone }}">{{ site_settings.contact_phone }}</a></p>{% endif %}
+          {% if site_settings.contact_address %}<p>{{ site_settings.contact_address|linebreaksbr }}</p>{% endif %}
+        </address>
+      {% endif %}
+    </div>
+
+    <div class="space-y-5 md:text-right">
+      {% if footer_navigation %}
+        <nav aria-label="Footer">
+          <ul class="flex flex-wrap gap-4 md:justify-end">
+            {% for item in footer_navigation %}
+              <li>
+                <a class="link link-hover text-sm" href="{{ item.href }}" {% if item.opens_new_tab %}target="_blank" rel="noopener"{% endif %}>
+                  {{ item.label }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      {% endif %}
+
+      <div class="flex flex-wrap gap-4 md:justify-end">
+        {% if site_settings.instagram_url %}<a class="link link-hover text-sm" href="{{ site_settings.instagram_url }}" target="_blank" rel="noopener">Instagram</a>{% endif %}
+        {% if site_settings.facebook_url %}<a class="link link-hover text-sm" href="{{ site_settings.facebook_url }}" target="_blank" rel="noopener">Facebook</a>{% endif %}
+        {% if site_settings.linkedin_url %}<a class="link link-hover text-sm" href="{{ site_settings.linkedin_url }}" target="_blank" rel="noopener">LinkedIn</a>{% endif %}
+        {% if site_settings.youtube_url %}<a class="link link-hover text-sm" href="{{ site_settings.youtube_url }}" target="_blank" rel="noopener">YouTube</a>{% endif %}
+      </div>
+    </div>
+  </div>
+</footer>

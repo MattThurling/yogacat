@@ -1,15 +1,44 @@
 <!-- NAVIGATION -->
-<nav class="bg-base-100 shadow-sm" aria-label="Primary">
+<nav class="bg-base-100/95 shadow-sm backdrop-blur" aria-label="Primary">
   <div class="mx-auto max-w-6xl px-4">
     <div class="navbar min-h-16 px-0">
       <div class="flex-1">
-        <a class="text-lg font-bold no-underline tracking-wide" href="/">YogaCat</a>
+        <a class="flex items-center gap-3 text-lg font-bold no-underline tracking-wide" href="/">
+          {% if site_settings.logo_url %}
+            <img class="h-9 w-auto" src="{{ site_settings.logo_url }}" alt="{{ site_settings.logo_alt|default:site_settings.site_name }}">
+          {% endif %}
+          <span>{{ site_settings.site_name|default:"YogaCat" }}</span>
+        </a>
       </div>
-      <div class="flex-none">
-        <span class="badge badge-ghost border-base-300 text-[0.65rem] uppercase tracking-[0.3em]">
-          Launch Preview
-        </span>
-      </div>
+      {% if primary_navigation %}
+        <div class="hidden flex-none md:block">
+          <ul class="menu menu-horizontal gap-1 px-1">
+            {% for item in primary_navigation %}
+              <li>
+                <a class="no-underline" href="{{ item.href }}" {% if item.opens_new_tab %}target="_blank" rel="noopener"{% endif %}>
+                  {{ item.label }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="dropdown dropdown-end md:hidden">
+          <button class="btn btn-ghost btn-square" type="button" tabindex="0" aria-label="Open navigation menu">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="h-6 w-6 stroke-current">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+          </button>
+          <ul class="menu menu-sm dropdown-content z-20 mt-3 w-56 rounded-box bg-base-100 p-2 shadow-lg" tabindex="0">
+            {% for item in primary_navigation %}
+              <li>
+                <a class="no-underline" href="{{ item.href }}" {% if item.opens_new_tab %}target="_blank" rel="noopener"{% endif %}>
+                  {{ item.label }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
     </div>
   </div>
 </nav>

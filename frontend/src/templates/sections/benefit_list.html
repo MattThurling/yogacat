@@ -1,0 +1,18 @@
+<section class="mx-auto max-w-6xl px-6 py-16">
+  <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+    <div>
+      {% if section.eyebrow %}<p class="text-sm uppercase tracking-[0.35em] text-base-content/50">{{ section.eyebrow }}</p>{% endif %}
+      {% if section.heading %}<h2 class="mt-3 text-3xl font-bold md:text-4xl">{{ section.heading }}</h2>{% endif %}
+      {% if section.intro %}<p class="mt-4 text-lg leading-8 text-base-content/70">{{ section.intro|linebreaksbr }}</p>{% endif %}
+    </div>
+    <div class="grid gap-4 sm:grid-cols-2">
+      {% for item in section.items.all %}
+        <article class="rounded-2xl border border-base-300 bg-base-100 p-6 shadow-sm">
+          {% if item.icon %}<div class="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">{{ item.icon }}</div>{% endif %}
+          {% if item.title %}<h3 class="text-xl font-semibold">{{ item.title }}</h3>{% endif %}
+          {% if item.body %}<div class="mt-3 text-base-content/70">{{ item.body|linebreaks }}</div>{% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

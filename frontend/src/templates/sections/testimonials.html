@@ -1,0 +1,20 @@
+<section class="mx-auto max-w-6xl px-6 py-16">
+  <div class="w-full max-w-6xl">
+    {% if section.eyebrow %}<p class="text-sm uppercase tracking-[0.35em] text-base-content/50">{{ section.eyebrow }}</p>{% endif %}
+    {% if section.heading %}<h2 class="mt-3 text-3xl font-bold md:text-4xl">{{ section.heading }}</h2>{% endif %}
+    {% if section.intro %}<p class="mt-4 text-lg leading-8 text-base-content/70">{{ section.intro|linebreaksbr }}</p>{% endif %}
+  </div>
+  <div class="mt-8 grid gap-6 md:grid-cols-2">
+    {% for item in section.items.all %}
+      <figure class="rounded-2xl border border-base-300 bg-base-100 p-7 shadow-sm">
+        {% if item.body %}<blockquote class="text-lg leading-8 text-base-content/75">{{ item.body|linebreaks }}</blockquote>{% endif %}
+        {% if item.title or item.subtitle %}
+          <figcaption class="mt-5 text-sm text-base-content/60">
+            {% if item.title %}<span class="font-semibold text-base-content">{{ item.title }}</span>{% endif %}
+            {% if item.subtitle %}<span>{{ item.subtitle }}</span>{% endif %}
+          </figcaption>
+        {% endif %}
+      </figure>
+    {% endfor %}
+  </div>
+</section>

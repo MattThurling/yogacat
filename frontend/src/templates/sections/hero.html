@@ -1,0 +1,31 @@
+<section class="relative isolate overflow-hidden {% if section.is_full_height %}min-h-screen{% else %}py-24 md:py-32{% endif %} {% if not section.image_url %}bg-base-200{% endif %}">
+  {% if section.image_url %}
+    <img class="absolute inset-0 -z-20 h-full w-full object-cover" src="{{ section.image_url }}" alt="{{ section.image_alt }}">
+    <div class="absolute inset-0 -z-10 bg-black/55"></div>
+  {% endif %}
+
+  <div class="mx-auto flex max-w-6xl px-6 {% if section.is_full_height %}min-h-screen items-center justify-center text-center{% endif %}">
+    <div class="w-full max-w-6xl {% if section.image_url %}text-neutral-content{% endif %}">
+      {% if section.eyebrow %}
+        <p class="mb-4 text-sm uppercase tracking-[0.45em]">{{ section.eyebrow }}</p>
+      {% endif %}
+      <h1 class="text-5xl font-bold md:text-7xl">{{ section.heading|default:page.display_h1 }}</h1>
+      {% if section.intro %}
+        <p class="mt-6 text-lg leading-8 opacity-85">{{ section.intro|linebreaksbr }}</p>
+      {% endif %}
+      {% if section.body %}
+        <div class="mt-6 text-lg leading-8 opacity-85">{{ section.body|linebreaks }}</div>
+      {% endif %}
+      {% if section.primary_cta_label or section.secondary_cta_label %}
+        <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+          {% if section.primary_cta_label and section.primary_href %}
+            <a class="btn btn-primary btn-wide" href="{{ section.primary_href }}">{{ section.primary_cta_label }}</a>
+          {% endif %}
+          {% if section.secondary_cta_label and section.secondary_href %}
+            <a class="btn btn-outline btn-wide {% if section.image_url %}border-neutral-content text-neutral-content hover:bg-neutral-content hover:text-neutral{% endif %}" href="{{ section.secondary_href }}">{{ section.secondary_cta_label }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

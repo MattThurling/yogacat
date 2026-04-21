@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+  <header class="mx-auto max-w-6xl px-6 py-16 text-center">
+    <p class="text-sm uppercase tracking-[0.35em] text-base-content/50">{{ site_settings.site_name|default:"YogaCat" }}</p>
+    <h1 class="mt-4 text-4xl font-bold md:text-6xl">{{ page.display_h1 }}</h1>
+    {% if page.intro %}
+      <p class="mt-5 text-lg leading-8 text-base-content/70">{{ page.intro|linebreaksbr }}</p>
+    {% endif %}
+  </header>
+  {% include "pages/_sections.html" %}
+</main>
+{% endblock %}

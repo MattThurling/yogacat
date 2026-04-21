@@ -1,0 +1,7 @@
+<section class="mx-auto max-w-6xl px-6 py-16">
+  <figure class="rounded-[2rem] border border-base-300 bg-base-100 p-8 text-center shadow-sm md:p-12">
+    {% if section.eyebrow %}<p class="text-sm uppercase tracking-[0.35em] text-base-content/50">{{ section.eyebrow }}</p>{% endif %}
+    {% if section.body %}<blockquote class="mt-4 text-2xl font-semibold leading-relaxed md:text-4xl">{{ section.body|linebreaks }}</blockquote>{% endif %}
+    {% if section.heading %}<figcaption class="mt-6 text-base-content/60">{{ section.heading }}</figcaption>{% endif %}
+  </figure>
+</section>

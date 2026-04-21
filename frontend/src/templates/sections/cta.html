@@ -1,0 +1,17 @@
+<section class="mx-auto max-w-6xl px-6 py-16">
+  <div class="rounded-[2rem] bg-neutral px-8 py-12 text-center text-neutral-content shadow-xl md:px-12">
+    {% if section.eyebrow %}<p class="text-sm uppercase tracking-[0.35em] text-neutral-content/70">{{ section.eyebrow }}</p>{% endif %}
+    {% if section.cta_heading %}<h2 class="mt-4 text-3xl font-bold md:text-5xl">{{ section.cta_heading }}</h2>{% endif %}
+    {% if section.cta_body %}<div class="mx-auto mt-5 max-w-6xl text-lg leading-8 text-neutral-content/80">{{ section.cta_body|linebreaks }}</div>{% endif %}
+    {% if section.cta_primary_label or section.cta_secondary_label %}
+      <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        {% if section.cta_primary_label and section.cta_primary_href %}
+          <a class="btn btn-primary btn-wide" href="{{ section.cta_primary_href }}">{{ section.cta_primary_label }}</a>
+        {% endif %}
+        {% if section.cta_secondary_label and section.cta_secondary_href %}
+          <a class="btn btn-outline btn-wide border-neutral-content text-neutral-content hover:bg-neutral-content hover:text-neutral" href="{{ section.cta_secondary_href }}">{{ section.cta_secondary_label }}</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>

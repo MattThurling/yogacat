@@ -1,0 +1,11 @@
+{% for section in page.sections.all %}
+  {% include section.template_name %}
+{% empty %}
+  {% if is_preview %}
+    <section class="mx-auto max-w-6xl px-6 py-16">
+      <div class="rounded-2xl border border-dashed border-base-300 bg-base-100 p-8 text-center text-base-content/60">
+        Add visible sections to this page in Django admin.
+      </div>
+    </section>
+  {% endif %}
+{% endfor %}

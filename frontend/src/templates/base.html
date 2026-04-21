@@ -2,14 +2,33 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>{% block page_title %}YogaCat{% endblock %}</title>
+		<title>{% block page_title %}{% if page %}{{ page.meta_title }}{% elif site_settings.default_meta_title %}{{ site_settings.default_meta_title }}{% elif site_settings %}{{ site_settings.site_name }}{% else %}YogaCat{% endif %}{% endblock %}</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% if page.meta_description %}
+			<meta name="description" content="{{ page.meta_description }}">
+		{% elif site_settings.default_meta_description %}
+			<meta name="description" content="{{ site_settings.default_meta_description }}">
+		{% endif %}
+		{% if page.noindex %}
+			<meta name="robots" content="noindex,nofollow">
+		{% endif %}
+		{% if page.canonical_url %}
+			<link rel="canonical" href="{{ page.canonical_url }}">
+		{% endif %}
+		{% if page %}
+			<meta property="og:title" content="{{ page.meta_title }}">
+			{% if page.meta_description %}<meta property="og:description" content="{{ page.meta_description }}">{% endif %}
+			{% if page.social_image_url %}<meta property="og:image" content="{{ page.social_image_url }}">{% elif site_settings.default_social_image_url %}<meta property="og:image" content="{{ site_settings.default_social_image_url }}">{% endif %}
+		{% elif site_settings %}
+			<meta property="og:title" content="{{ site_settings.default_meta_title|default:site_settings.site_name }}">
+			{% if site_settings.default_meta_description %}<meta property="og:description" content="{{ site_settings.default_meta_description }}">{% endif %}
+			{% if site_settings.default_social_image_url %}<meta property="og:image" content="{{ site_settings.default_social_image_url }}">{% endif %}
+		{% endif %}
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
 		<script src="https://unpkg.com/lucide@latest"></script>
         {% if debug %}
             <!-- ✅ Dev mode: Load from Vite -->
@@ -24,6 +43,15 @@
 	</head>
 
 	<body class="scroll-smooth">
+		{% block navigation %}
+			{% if page %}
+				{% if page.show_navigation %}
+					{% include "partials/navigation.html" %}
+				{% endif %}
+			{% else %}
+				{% include "partials/navigation.html" %}
+			{% endif %}
+		{% endblock %}
 		{% if messages %}
 		<div class="space-y-2">
 			{% for message in messages %}
@@ -32,18 +60,19 @@
 			</div>
 			{% endfor %}
 			</div>
+		{% endif %}
+		{% block content %}{% endblock %}
+		{% block footer %}
+			{% if page %}
+				{% if page.show_footer %}
+					{% include "partials/footer.html" %}
+				{% endif %}
+			{% else %}
+				{% include "partials/footer.html" %}
 			{% endif %}
-			{% block content %}{% endblock %}
-			{% block footer %}
-				<footer class="footer items-center p-4 bg-base-200 text-base-content mt-6">
-					<div class="flex flex-col sm:flex-row justify-between w-full">
-						<p class="text-sm">&copy; 2025 YogaCat. All rights reserved.</p>
-						<p class="text-sm">Single-page launch version.</p>
-					</div>
-				</footer>
-			{% endblock %}
-			<script>
-				// Initialize Lucide Icons
+		{% endblock %}
+		<script>
+			// Initialize Lucide Icons
 				lucide.createIcons();
 		</script>
 	</body>

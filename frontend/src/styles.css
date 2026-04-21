@@ -1,10 +1,39 @@
 @import "tailwindcss";
 @plugin "daisyui";
-@font-face {
-    font-family: 'OptiSans';
-    src: url('https://storage.googleapis.com/le-assets/fonts/OptiSans/OPTISansSerif-Shaded.ttf.woff') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+
+:root {
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+}
+
+html {
+    font-family: var(--font-body);
+}
+
+body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+}
+
+.navbar a,
+.footer,
+.btn,
+.badge,
+.menu {
+    font-family: var(--font-body);
+    letter-spacing: 0.02em;
 }
 
 
@@ -20,19 +49,6 @@
     height: 36px;
 }
 
-.unspeakable-text {
-    font-family: 'Libre Baskerville';
-}
-
-.unspeakable-counter {
-  font-family: 'Rubik Mono One';
-}
-
-.opti {
-    font-family: 'OptiSans';
-    font-size: 48px;
-}
-
 .btn-red {
   @apply btn btn-outline border-red-500 text-red-500 hover:bg-red-500 hover:text-white;
 }
@@ -42,5 +58,4 @@
 }
 
   
-
 

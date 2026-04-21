@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="mx-auto max-w-6xl px-6 py-16">
+  <header>
+    <h1 class="text-4xl font-bold md:text-5xl">{{ page.display_h1 }}</h1>
+    {% if page.intro %}
+      <p class="mt-5 text-lg leading-8 text-base-content/70">{{ page.intro|linebreaksbr }}</p>
+    {% endif %}
+  </header>
+  <div class="mt-10">
+    {% include "pages/_sections.html" %}
+  </div>
+</main>
+{% endblock %}

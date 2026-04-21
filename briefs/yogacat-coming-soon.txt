@@ -1,0 +1,19 @@
+Client: YogaCat
+Site type: small yoga brochure site
+Current launch state: coming soon splash page only
+Audience: people interested in calm, approachable yoga sessions
+Tone: calm, concise, warm, lightly playful
+
+Generate one homepage only.
+
+Homepage requirements:
+- Use the homepage template.
+- Make it the homepage.
+- Hide navigation and footer.
+- Use one full-height hero section.
+- Hero eyebrow: YogaCat
+- Hero heading: Coming Soon
+- Hero image URL: https://storage.googleapis.com/le-assets/images/teacher.webp
+- Hero image alt text: Yoga practice
+
+Do not create service pages, about pages, contact pages, navigation items, CTAs, or reusable CTA snippets yet.

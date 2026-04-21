@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+  <header class="mx-auto grid max-w-6xl gap-8 px-6 py-16 md:grid-cols-[1fr_0.8fr] md:items-end">
+    <div>
+      <p class="text-sm uppercase tracking-[0.35em] text-base-content/50">Contact</p>
+      <h1 class="mt-4 text-4xl font-bold md:text-6xl">{{ page.display_h1 }}</h1>
+      {% if page.intro %}
+        <p class="mt-5 text-lg leading-8 text-base-content/70">{{ page.intro|linebreaksbr }}</p>
+      {% endif %}
+    </div>
+    {% if site_settings.contact_email or site_settings.contact_phone %}
+      <div class="rounded-2xl border border-base-300 bg-base-100 p-6 shadow-sm">
+        {% if site_settings.contact_email %}
+          <p class="text-sm text-base-content/60">Email</p>
+          <p class="mt-1"><a class="link link-hover font-semibold" href="mailto:{{ site_settings.contact_email }}">{{ site_settings.contact_email }}</a></p>
+        {% endif %}
+        {% if site_settings.contact_phone %}
+          <p class="mt-4 text-sm text-base-content/60">Phone</p>
+          <p class="mt-1"><a class="link link-hover font-semibold" href="tel:{{ site_settings.contact_phone }}">{{ site_settings.contact_phone }}</a></p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </header>
+  {% include "pages/_sections.html" %}
+</main>
+{% endblock %}

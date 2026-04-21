@@ -94,6 +94,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'website.context_processors.site_settings',
             ],
         },
     },
@@ -118,7 +119,7 @@ USE_SSL_DB = os.getenv("DB_SSL", "true").lower() == "true"
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql://postgres.zpuraeylopsyzajkebly:{password}@aws-1-eu-west-2.pooler.supabase.com:5432/postgres".format(
+    "postgresql://postgres.vaygbjzixeqrqaxmwmnq:{password}@aws-1-eu-north-1.pooler.supabase.com:5432/postgres".format(
         password=os.getenv("DB_PASSWORD")
     )
 )
